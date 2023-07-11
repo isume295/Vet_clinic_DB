@@ -37,8 +37,6 @@
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **[Animal Table]**
 - **[Insert data into the table]**
 - **[Query data from the table]**
