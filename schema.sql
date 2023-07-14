@@ -44,7 +44,7 @@ ADD CONSTRAINT fk_species
 FOREIGN KEY (species_id)
 REFERENCES species(id);
 
---
+-- set species_id value
 UPDATE animals
 SET species_id = (
   CASE
@@ -53,3 +53,27 @@ SET species_id = (
   END
 );
 
+ 
+-- create a new table named vets
+CREATE TABLE vets (
+  id  INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255),
+  age INTEGER,
+  date_of_graduation DATE,
+  PRIMARY KEY(id)
+);
+
+-- Create a "join table" called specializations to handle many to many relationship
+CREATE TABLE specializations (
+  vet_id INTEGER REFERENCES vets(id),
+  species_id INTEGER REFERENCES species(id),
+  PRIMARY KEY (vet_id, species_id)
+);
+
+-- Create a "join table" called visits to handle many to many relationship
+CREATE TABLE visits (
+  vet_id INTEGER REFERENCES vets(id),
+  animal_id INTEGER REFERENCES animals(id),
+  visit_date DATE,
+  PRIMARY KEY (vet_id, animal_id)
+);
